@@ -12,6 +12,8 @@
     "lint": "bun run --cwd client lint && bun run --cwd server lint",
     "lint:fix": "bun run --cwd client lint:fix && bun run --cwd server lint:fix",
     "fmt": "bun run --cwd client fmt && bun run --cwd server fmt",
-    "fmt:check": "bun run --cwd client fmt:check && bun run --cwd server fmt:check"
+    "fmt:check": "bun run --cwd client fmt:check && bun run --cwd server fmt:check",
+    "test": "bun run --cwd client test",
+    "test:watch": "bun run --cwd client test:watch"
   }
 }

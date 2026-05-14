@@ -10,6 +10,8 @@
     "lint:fix": "bunx oxlint . --fix",
     "fmt": "bunx oxfmt .",
     "fmt:check": "bunx oxfmt . --check",
+    "test": "vitest --run",
+    "test:watch": "vitest",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -37,10 +39,12 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
     "babel-plugin-react-compiler": "^1.0.0",
+    "jsdom": "^29.1.1",
     "oxfmt": "^0.49.0",
     "oxlint": "^1.64.0",
     "tailwindcss": "^4.3.0",
     "typescript": "~6.0.2",
-    "vite": "^8.0.12"
+    "vite": "^8.0.12",
+    "vitest": "^4.1.6"
   }
 }
