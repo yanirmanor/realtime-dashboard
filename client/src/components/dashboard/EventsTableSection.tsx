@@ -1,4 +1,5 @@
 import { useMetricsStore } from '../../features/metrics/store/metrics.store'
+import { EventsTable } from './EventsTable'
 
 export function EventsTableSection() {
   const events = useMetricsStore((state) => state.events)
@@ -18,30 +19,7 @@ export function EventsTableSection() {
         </span>
       </div>
 
-      <div className="overflow-hidden rounded-xl border border-white/10">
-        <div className="grid grid-cols-5 bg-slate-900 px-4 py-3 text-xs font-medium uppercase tracking-wide text-slate-400">
-          <span>Claim</span>
-          <span>Type</span>
-          <span>Status</span>
-          <span>Agent</span>
-          <span>Confidence</span>
-        </div>
-
-        <div className="divide-y divide-white/10">
-          {events.slice(0, 5).map((event) => (
-            <div
-              key={event.id}
-              className="grid grid-cols-5 px-4 py-3 text-sm text-slate-300"
-            >
-              <span>{event.claimId}</span>
-              <span>{event.eventType}</span>
-              <span>{event.status}</span>
-              <span>{event.agentName}</span>
-              <span>{Math.round(event.confidenceScore * 100)}%</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      <EventsTable />
     </section>
   )
 }
