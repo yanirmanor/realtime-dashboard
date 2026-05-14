@@ -13,6 +13,14 @@ const categories = ['health', 'car', 'home', 'travel']
 export function CategoryDistributionChart() {
   const events = useMetricsStore((state) => state.events)
 
+  if (events.length === 0) {
+    return (
+      <div className="flex h-[280px] items-center justify-center rounded-xl border border-dashed border-white/10 text-sm text-slate-500">
+        Waiting for category distribution data...
+      </div>
+    )
+  }
+
   const chartData = categories.map((category) => ({
     category,
     count: events.filter((event) => event.category === category).length,

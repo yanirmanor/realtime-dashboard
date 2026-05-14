@@ -11,6 +11,14 @@ import { useMetricsStore } from '../../features/metrics/store/metrics.store'
 export function LiveThroughputChart() {
   const events = useMetricsStore((state) => state.events)
 
+  if (events.length === 0) {
+    return (
+      <div className="flex h-[280px] items-center justify-center rounded-xl border border-dashed border-white/10 text-sm text-slate-500">
+        Waiting for live processing data...
+      </div>
+    )
+  }
+
   const chartData = events
     .slice()
     .reverse()

@@ -96,8 +96,14 @@ export function EventsTable() {
         </div>
 
         {events.length === 0 && (
-          <div className="flex h-[240px] items-center justify-center text-sm text-slate-500">
-            Waiting for live events...
+          <div className="flex h-[240px] flex-col items-center justify-center gap-2 text-center">
+            <p className="text-sm font-medium text-slate-300">
+              No events to display
+            </p>
+            <p className="max-w-sm text-sm text-slate-500">
+              Waiting for live claim events, or your current filters do not match any
+              existing events.
+            </p>
           </div>
         )}
       </div>
