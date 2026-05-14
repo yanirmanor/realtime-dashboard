@@ -1,5 +1,6 @@
 import { useFilteredEvents } from '../../features/metrics/hooks/useFilteredEvents'
 import { EventsTable } from './EventsTable'
+import { MobileEventsList } from './MobileEventsList'
 
 export function EventsTableSection() {
   const events = useFilteredEvents()
@@ -19,7 +20,13 @@ export function EventsTableSection() {
         </span>
       </div>
 
-      <EventsTable />
+      <div className="hidden md:block">
+        <EventsTable />
+      </div>
+
+      <div className="md:hidden">
+        <MobileEventsList />
+      </div>
     </section>
   )
 }
