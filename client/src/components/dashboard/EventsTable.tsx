@@ -6,7 +6,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
-import { ArrowUpDown } from 'lucide-react'
+import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react'
 import { useMemo, useRef, useState } from 'react'
 import { useMetricsStore } from '../../features/metrics/store/metrics.store'
 import { useFilteredEvents } from '../../features/metrics/hooks/useFilteredEvents'
@@ -43,20 +43,39 @@ export function EventsTable() {
   return (
     <div className="overflow-hidden rounded-xl border border-white/10 bg-[#141820]">
       <div className="grid grid-cols-[1.1fr_1.6fr_1.1fr_1.6fr_1fr_1fr_1fr] border-b border-white/10 bg-[#0c0e12] px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#c1c6d7]">
-        {table.getHeaderGroups()[0]?.headers.map((header) => (
-          <button
-            key={header.id}
-            type="button"
-            onClick={header.column.getToggleSortingHandler()}
-            className="flex items-center gap-1 text-left hover:text-[#e2e2e8]"
-          >
-            {flexRender(
-              header.column.columnDef.header,
-              header.getContext(),
-            )}
-            <ArrowUpDown size={12} />
-          </button>
-        ))}
+        {table.getHeaderGroups()[0]?.headers.map((header) => {
+          const sortState = header.column.getIsSorted()
+          const isSorted = sortState === 'asc' || sortState === 'desc'
+          const SortIcon =
+            sortState === 'asc'
+              ? ArrowUp
+              : sortState === 'desc'
+                ? ArrowDown
+                : ArrowUpDown
+
+          return (
+            <button
+              key={header.id}
+              type="button"
+              onClick={header.column.getToggleSortingHandler()}
+              className={`flex items-center gap-1.5 rounded-md px-1 py-0.5 text-left transition-colors ${
+                isSorted
+                  ? 'bg-[#adc7ff]/12 text-[#adc7ff]'
+                  : 'text-[#c1c6d7] hover:text-[#e2e2e8]'
+              }`}
+              aria-label={`Sort by ${String(header.column.columnDef.header)}`}
+            >
+              {flexRender(
+                header.column.columnDef.header,
+                header.getContext(),
+              )}
+              <SortIcon
+                size={12}
+                className={isSorted ? 'opacity-100' : 'opacity-70'}
+              />
+            </button>
+          )
+        })}
       </div>
 
       <div
