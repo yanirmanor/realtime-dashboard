@@ -8,6 +8,10 @@
   "scripts": {
     "dev:client": "bun run --cwd client dev",
     "dev:server": "bun run --cwd server dev",
-    "dev": "bun run dev:client & bun run dev:server"
+    "dev": "bun run dev:client & bun run dev:server",
+    "lint": "bun run --cwd client lint && bun run --cwd server lint",
+    "lint:fix": "bun run --cwd client lint:fix && bun run --cwd server lint:fix",
+    "fmt": "bun run --cwd client fmt && bun run --cwd server fmt",
+    "fmt:check": "bun run --cwd client fmt:check && bun run --cwd server fmt:check"
   }
 }
