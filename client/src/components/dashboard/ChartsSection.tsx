@@ -4,10 +4,10 @@ import { LiveThroughputChart } from './LiveThroughputChart'
 export function ChartsSection() {
   return (
     <section className="grid gap-4 xl:grid-cols-[2fr_1fr]">
-      <div className="min-h-[360px] rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+      <div className="widget-card min-h-[360px] rounded-xl p-5">
         <div className="mb-4">
-          <h2 className="font-medium text-slate-100">Processing Duration</h2>
-          <p className="text-sm text-slate-400">
+          <h2 className="text-lg font-medium text-[#e2e2e8]">Processing Duration</h2>
+          <p className="text-sm text-[#c1c6d7]">
             Live processing duration in milliseconds.
           </p>
         </div>
@@ -15,12 +15,12 @@ export function ChartsSection() {
         <LiveThroughputChart />
       </div>
 
-      <div className="min-h-[360px] rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+      <div className="widget-card min-h-[360px] rounded-xl p-5">
         <div className="mb-4">
-          <h2 className="font-medium text-slate-100">
+          <h2 className="text-lg font-medium text-[#e2e2e8]">
             Processing Distribution
           </h2>
-          <p className="text-sm text-slate-400">Events by claim category.</p>
+          <p className="text-sm text-[#c1c6d7]">Events by claim category.</p>
         </div>
 
         <CategoryDistributionChart />

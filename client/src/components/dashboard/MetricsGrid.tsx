@@ -4,30 +4,22 @@ import {
   Bot,
   Timer,
 } from 'lucide-react'
-import { useFilteredEvents } from '../../features/metrics/hooks/useFilteredEvents'
+import { useMetricStats } from '../../features/metrics/hooks/useMetricStats'
 import { MetricCard } from './MetricCard'
 
 export function MetricsGrid() {
-  const events = useFilteredEvents()
-
-  const fraudAlerts = events.filter(
-    (event) => event.eventType === 'fraud_alert',
-  ).length
-
-  const avgProcessingTime = events.length
-    ? Math.round(
-        events.reduce((sum, event) => sum + event.durationMs, 0) /
-          events.length,
-      )
-    : 0
-
-  const activeAgents = new Set(events.map((event) => event.agentName)).size
+  const {
+    claimsProcessed,
+    fraudAlerts,
+    avgProcessingTime,
+    activeAgents,
+  } = useMetricStats()
 
   return (
     <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
       <MetricCard
         title="Claims Processed"
-        value={events.length}
+        value={claimsProcessed}
         description="Latest 100 live events"
         icon={Activity}
       />

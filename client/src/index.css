@@ -1,4 +1,22 @@
 @import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0a0c10;
+  --surface-dim: #111318;
+  --surface-lowest: #0c0e12;
+  --surface-low: #1a1c20;
+  --surface: #1e2024;
+  --surface-high: #282a2e;
+  --surface-highest: #333539;
+  --on-surface: #e2e2e8;
+  --on-surface-variant: #c1c6d7;
+  --outline: #414754;
+  --primary: #adc7ff;
+  --primary-strong: #4a8eff;
+  --secondary: #4edea3;
+  --error: #ffb4ab;
+}
 
 * {
   box-sizing: border-box;
@@ -12,5 +30,33 @@ body,
 
 body {
   margin: 0;
+  background-color: var(--bg);
+  color: var(--on-surface);
   font-family: Inter, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Geist, Inter, 'Segoe UI', sans-serif;
+}
+
+#root {
+  isolation: isolate;
+}
+
+.glass-panel {
+  background: rgba(17, 20, 27, 0.72);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.widget-card {
+  background-color: var(--surface-low);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }

@@ -1,4 +1,5 @@
 import type { ColumnDef } from '@tanstack/react-table'
+import { StatusBadge } from '../../../components/dashboard/StatusBadge'
 import type { MetricEvent } from '../types/metrics.types'
 
 export const eventColumns: ColumnDef<MetricEvent>[] = [
@@ -13,15 +14,7 @@ export const eventColumns: ColumnDef<MetricEvent>[] = [
   {
     accessorKey: 'status',
     header: 'Status',
-    cell: ({ row }) => {
-      const status = row.original.status
-
-      return (
-        <span className="rounded-full border border-white/10 bg-slate-900 px-2 py-1 text-xs">
-          {status}
-        </span>
-      )
-    },
+    cell: ({ row }) => <StatusBadge status={row.original.status} />,
   },
   {
     accessorKey: 'agentName',

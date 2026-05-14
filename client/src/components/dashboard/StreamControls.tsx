@@ -27,64 +27,58 @@ export function StreamControls() {
   const setSearchQuery = useMetricsStore((state) => state.setSearchQuery)
 
   return (
-    <section className="grid gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h2 className="text-sm font-medium text-slate-200">
-            Stream controls
-          </h2>
-          <p className="text-sm text-slate-400">
-            Control and filter live claim event ingestion.
-          </p>
-        </div>
+    <section className="grid gap-3">
+      <div className="flex flex-wrap gap-2 lg:justify-end">
+        <button
+          type="button"
+          aria-label="Start live event stream"
+          onClick={startStream}
+          disabled={isStreaming}
+          className="inline-flex items-center gap-2 rounded-lg bg-[#4edea3] px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-[#003824] disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          <Play size={16} />
+          Start
+        </button>
 
-        <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={startStream}
-            disabled={isStreaming}
-            className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-2 text-sm font-medium text-emerald-950 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            <Play size={16} />
-            Start
-          </button>
+        <button
+          type="button"
+          aria-label="Pause live event stream"
+          onClick={stopStream}
+          disabled={!isStreaming}
+          className="inline-flex items-center gap-2 rounded-lg bg-[#ffb84d] px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-[#5c3900] disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          <Pause size={16} />
+          Stop
+        </button>
 
-          <button
-            type="button"
-            onClick={stopStream}
-            disabled={!isStreaming}
-            className="inline-flex items-center gap-2 rounded-xl bg-amber-500 px-4 py-2 text-sm font-medium text-amber-950 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            <Pause size={16} />
-            Stop
-          </button>
-
-          <button
-            type="button"
-            onClick={clearEvents}
-            className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-slate-900 px-4 py-2 text-sm font-medium text-slate-200 hover:bg-slate-800"
-          >
-            <Trash2 size={16} />
-            Clear
-          </button>
-        </div>
+        <button
+          type="button"
+          aria-label="Clear all live events"
+          onClick={clearEvents}
+          className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-[#1a1c20] px-4 py-2 text-sm font-medium text-[#e2e2e8] hover:bg-[#282a2e]"
+        >
+          <Trash2 size={16} />
+          Clear
+        </button>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-[1fr_220px]">
-        <label className="flex items-center gap-2 rounded-xl border border-white/10 bg-slate-900 px-3 py-2">
-          <Search size={16} className="text-slate-500" />
+      <div className="grid gap-3 md:grid-cols-[1fr_240px]">
+        <label className="flex items-center gap-2 rounded-full border border-white/10 bg-[#0c0e12] px-4 py-2.5">
+          <Search size={16} className="text-[#8b90a0]" />
           <input
+            aria-label="Search live claim events"
             value={searchQuery}
             onChange={(event) => setSearchQuery(event.target.value)}
             placeholder="Search claim, agent, event..."
-            className="w-full bg-transparent text-sm text-slate-200 outline-none placeholder:text-slate-500"
+            className="w-full bg-transparent text-sm text-[#e2e2e8] outline-none placeholder:text-[#8b90a0]"
           />
         </label>
 
         <select
+          aria-label="Filter events by claim status"
           value={selectedStatus}
           onChange={(event) => setSelectedStatus(event.target.value)}
-          className="rounded-xl border border-white/10 bg-slate-900 px-3 py-2 text-sm text-slate-200 outline-none"
+          className="rounded-xl border border-white/10 bg-[#141820] px-3 py-2 text-sm text-[#e2e2e8] outline-none"
         >
           {statuses.map((status) => (
             <option key={status} value={status}>

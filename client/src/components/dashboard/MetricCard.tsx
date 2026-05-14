@@ -58,12 +58,14 @@ export function MetricCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.25 }}
       whileHover={{ y: -2 }}
-      className="rounded-2xl border border-white/10 bg-white/[0.03] p-5"
+      className="widget-card rounded-xl border-t-2 border-t-[#adc7ff]/50 p-5 shadow-[0_0_18px_-6px_rgba(173,199,255,0.2)]"
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-sm text-slate-400">{title}</p>
-          <p className="mt-2 text-3xl font-semibold text-slate-100">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#c1c6d7]">
+            {title}
+          </p>
+          <p className="mt-2 text-4xl font-semibold text-[#e2e2e8]">
             {isNumeric
               ? <AnimatedValue value={value} suffix={suffix} duration={animationDuration} />
               : value}
@@ -72,12 +74,12 @@ export function MetricCard({
         <motion.div
           animate={{ scale: [1, 1.04, 1] }}
           transition={{ duration: 0.35, ease: 'easeOut' }}
-          className="rounded-xl border border-white/10 bg-slate-900/80 p-2 text-cyan-300"
+          className="rounded-xl border border-white/10 bg-[#1e2024] p-2 text-[#adc7ff]"
         >
           <Icon size={18} />
         </motion.div>
       </div>
-      <p className="mt-3 text-sm text-slate-500">{description}</p>
+      <p className="mt-3 text-sm text-[#8b90a0]">{description}</p>
     </motion.article>
   )
 }

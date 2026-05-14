@@ -15,7 +15,7 @@ export function StatusBanner() {
         icon={Loader2}
         title="Reconnecting to live stream"
         description="Trying to restore the websocket connection."
-        className="border-amber-500/30 bg-amber-500/10 text-amber-200"
+        className="border-[#ffb84d]/40 bg-[#ffb84d]/12 text-[#ffd89f]"
         spin
       />
     )
@@ -27,7 +27,7 @@ export function StatusBanner() {
         icon={WifiOff}
         title="Live stream disconnected"
         description="The dashboard is not receiving new claim events."
-        className="border-red-500/30 bg-red-500/10 text-red-200"
+        className="border-[#ffb4ab]/40 bg-[#ffb4ab]/12 text-[#ffd2ce]"
       />
     )
   }
@@ -38,7 +38,7 @@ export function StatusBanner() {
         icon={AlertTriangle}
         title="Stream paused"
         description="Live updates are paused. Click Start to resume."
-        className="border-slate-500/30 bg-slate-500/10 text-slate-200"
+        className="border-[#8b90a0]/40 bg-[#8b90a0]/12 text-[#d7d9df]"
       />
     )
   }
@@ -60,11 +60,11 @@ function Banner({
   spin?: boolean
 }) {
   return (
-    <div className={`flex gap-3 rounded-2xl border p-4 ${className}`}>
+    <div className={`glass-panel flex gap-3 rounded-xl border p-4 ${className}`}>
       <Icon size={20} className={spin ? 'animate-spin' : ''} />
       <div>
-        <p className="text-sm font-medium">{title}</p>
-        <p className="text-sm opacity-80">{description}</p>
+        <p className="text-sm font-semibold">{title}</p>
+        <p className="text-sm opacity-85">{description}</p>
       </div>
     </div>
   )

@@ -41,14 +41,14 @@ export function EventsTable() {
   })
 
   return (
-    <div className="overflow-hidden rounded-xl border border-white/10">
-      <div className="grid grid-cols-[1.1fr_1.6fr_1.1fr_1.6fr_1fr_1fr_1fr] bg-slate-900 px-4 py-3 text-xs font-medium uppercase tracking-wide text-slate-400">
+    <div className="overflow-hidden rounded-xl border border-white/10 bg-[#141820]">
+      <div className="grid grid-cols-[1.1fr_1.6fr_1.1fr_1.6fr_1fr_1fr_1fr] border-b border-white/10 bg-[#0c0e12] px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#c1c6d7]">
         {table.getHeaderGroups()[0]?.headers.map((header) => (
           <button
             key={header.id}
             type="button"
             onClick={header.column.getToggleSortingHandler()}
-            className="flex items-center gap-1 text-left hover:text-slate-200"
+            className="flex items-center gap-1 text-left hover:text-[#e2e2e8]"
           >
             {flexRender(
               header.column.columnDef.header,
@@ -75,8 +75,17 @@ export function EventsTable() {
             return (
               <div
                 key={row.id}
+                role="button"
+                tabIndex={0}
+                aria-label={`Open details for claim ${row.original.claimId}`}
                 onClick={() => selectEvent(row.original)}
-                className="absolute left-0 grid w-full cursor-pointer grid-cols-[1.1fr_1.6fr_1.1fr_1.6fr_1fr_1fr_1fr] border-b border-white/10 px-4 py-3 text-sm text-slate-300 hover:bg-white/[0.04]"
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault()
+                    selectEvent(row.original)
+                  }
+                }}
+                className="absolute left-0 grid w-full cursor-pointer grid-cols-[1.1fr_1.6fr_1.1fr_1.6fr_1fr_1fr_1fr] border-b border-white/5 px-4 py-3 text-sm text-[#d2d6e2] outline-none hover:bg-[#adc7ff]/5 focus:bg-[#adc7ff]/10"
                 style={{
                   height: `${virtualRow.size}px`,
                   transform: `translateY(${virtualRow.start}px)`,
@@ -97,10 +106,10 @@ export function EventsTable() {
 
         {events.length === 0 && (
           <div className="flex h-[240px] flex-col items-center justify-center gap-2 text-center">
-            <p className="text-sm font-medium text-slate-300">
+            <p className="text-sm font-medium text-[#d2d6e2]">
               No events to display
             </p>
-            <p className="max-w-sm text-sm text-slate-500">
+            <p className="max-w-sm text-sm text-[#8b90a0]">
               Waiting for live claim events, or your current filters do not match any
               existing events.
             </p>
