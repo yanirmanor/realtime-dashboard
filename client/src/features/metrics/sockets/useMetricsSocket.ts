@@ -1,19 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { socket } from './socket-client'
-import type {
-  ConnectionStatus,
-  MetricEvent,
-} from '../types/metrics.types'
+import type { MetricEvent } from '../types/metrics.types'
+import { useMetricsStore } from '../store/metrics.store'
 
-type UseMetricsSocketOptions = {
-  onEvent: (event: MetricEvent) => void
-}
-
-export function useMetricsSocket({ onEvent }: UseMetricsSocketOptions) {
-  const [connectionStatus, setConnectionStatus] =
-    useState<ConnectionStatus>('disconnected')
-
-  const [isStreaming, setIsStreaming] = useState(true)
+export function useMetricsSocket() {
+  const addEvent = useMetricsStore((state) => state.addEvent)
+  const setConnectionStatus = useMetricsStore(
+    (state) => state.setConnectionStatus,
+  )
+  const setIsStreaming = useMetricsStore(
+    (state) => state.setIsStreaming,
+  )
 
   useEffect(() => {
     socket.connect()
@@ -31,7 +28,7 @@ export function useMetricsSocket({ onEvent }: UseMetricsSocketOptions) {
     })
 
     socket.on('metric:event', (event: MetricEvent) => {
-      onEvent(event)
+      addEvent(event)
     })
 
     socket.on('stream:status', ({ isStreaming }) => {
@@ -46,20 +43,13 @@ export function useMetricsSocket({ onEvent }: UseMetricsSocketOptions) {
       socket.io.off('reconnect_attempt')
       socket.disconnect()
     }
-  }, [onEvent])
+  }, [addEvent, setConnectionStatus, setIsStreaming])
+}
 
-  const startStream = () => {
-    socket.emit('stream:start')
-  }
+export function startStream() {
+  socket.emit('stream:start')
+}
 
-  const stopStream = () => {
-    socket.emit('stream:stop')
-  }
-
-  return {
-    connectionStatus,
-    isStreaming,
-    startStream,
-    stopStream,
-  }
+export function stopStream() {
+  socket.emit('stream:stop')
 }
