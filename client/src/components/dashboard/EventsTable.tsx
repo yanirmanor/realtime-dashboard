@@ -13,6 +13,7 @@ import { eventColumns } from '../../features/metrics/table/event-columns'
 
 export function EventsTable() {
   const events = useMetricsStore((state) => state.events)
+  const selectEvent = useMetricsStore((state) => state.selectEvent)
   const [sorting, setSorting] = useState<SortingState>([])
 
   const data = useMemo(() => events, [events])
@@ -73,7 +74,8 @@ export function EventsTable() {
             return (
               <div
                 key={row.id}
-                className="absolute left-0 grid w-full grid-cols-[1.1fr_1.6fr_1.1fr_1.6fr_1fr_1fr_1fr] border-b border-white/10 px-4 py-3 text-sm text-slate-300 hover:bg-white/[0.04]"
+                onClick={() => selectEvent(row.original)}
+                className="absolute left-0 grid w-full cursor-pointer grid-cols-[1.1fr_1.6fr_1.1fr_1.6fr_1fr_1fr_1fr] border-b border-white/10 px-4 py-3 text-sm text-slate-300 hover:bg-white/[0.04]"
                 style={{
                   height: `${virtualRow.size}px`,
                   transform: `translateY(${virtualRow.start}px)`,

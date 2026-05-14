@@ -6,6 +6,7 @@ import type {
 
 type MetricsState = {
   events: MetricEvent[]
+  selectedEvent: MetricEvent | null
   connectionStatus: ConnectionStatus
   isStreaming: boolean
   selectedStatus: string
@@ -13,6 +14,8 @@ type MetricsState = {
 
   addEvent: (event: MetricEvent) => void
   clearEvents: () => void
+  selectEvent: (event: MetricEvent) => void
+  closeEventDetails: () => void
   setConnectionStatus: (status: ConnectionStatus) => void
   setIsStreaming: (isStreaming: boolean) => void
   setSelectedStatus: (status: string) => void
@@ -21,6 +24,7 @@ type MetricsState = {
 
 export const useMetricsStore = create<MetricsState>((set) => ({
   events: [],
+  selectedEvent: null,
   connectionStatus: 'disconnected',
   isStreaming: true,
   selectedStatus: 'all',
@@ -32,6 +36,10 @@ export const useMetricsStore = create<MetricsState>((set) => ({
     })),
 
   clearEvents: () => set({ events: [] }),
+
+  selectEvent: (event) => set({ selectedEvent: event }),
+
+  closeEventDetails: () => set({ selectedEvent: null }),
 
   setConnectionStatus: (connectionStatus) =>
     set({ connectionStatus }),
