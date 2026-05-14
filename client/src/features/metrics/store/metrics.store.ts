@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import type {
   ConnectionStatus,
   MetricEvent,
-} from '../types/metrics.types'
+} from '@/features/metrics/types/metrics.types'
 
 type MetricsState = {
   events: MetricEvent[]

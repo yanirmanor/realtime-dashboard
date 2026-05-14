@@ -3,8 +3,8 @@ import { Play, Search, StopCircle, X } from 'lucide-react'
 import {
   startStream,
   stopStream,
-} from '../../features/metrics/sockets/useMetricsSocket'
-import { useMetricsStore } from '../../features/metrics/store/metrics.store'
+} from '@/features/metrics/sockets/useMetricsSocket'
+import { useMetricsStore } from '@/features/metrics/store/metrics.store'
 
 const statuses = [
   'all',

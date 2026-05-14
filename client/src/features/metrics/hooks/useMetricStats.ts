@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useMetricsStore } from '../store/metrics.store'
+import { useMetricsStore } from '@/features/metrics/store/metrics.store'
 
 export function useMetricStats() {
   const events = useMetricsStore((state) => state.events)

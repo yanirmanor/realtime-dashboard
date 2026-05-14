@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { createMetricEvent } from '../../../test/fixtures'
-import { useMetricsStore } from '../store/metrics.store'
+import { createMetricEvent } from '@/test/fixtures'
+import { useMetricsStore } from '@/features/metrics/store/metrics.store'
 import { useFilteredEvents } from './useFilteredEvents'
 
 function resetStore() {

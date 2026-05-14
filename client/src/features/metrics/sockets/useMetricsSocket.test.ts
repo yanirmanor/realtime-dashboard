@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { createMetricEvent } from '../../../test/fixtures'
-import { useMetricsStore } from '../store/metrics.store'
+import { createMetricEvent } from '@/test/fixtures'
+import { useMetricsStore } from '@/features/metrics/store/metrics.store'
 import { socket } from './socket-client'
 import { startStream, stopStream, useMetricsSocket } from './useMetricsSocket'
 

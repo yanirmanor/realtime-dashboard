@@ -1,6 +1,6 @@
 import { Dialog } from '@base-ui-components/react/dialog'
 import { X } from 'lucide-react'
-import { useMetricsStore } from '../../features/metrics/store/metrics.store'
+import { useMetricsStore } from '@/features/metrics/store/metrics.store'
 
 export function EventDetailsDrawer() {
   const selectedEvent = useMetricsStore((state) => state.selectedEvent)

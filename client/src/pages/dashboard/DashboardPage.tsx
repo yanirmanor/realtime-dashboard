@@ -1,7 +1,7 @@
-import { Dashboard } from '../../components/dashboard/Dashboard'
-import { AppShell } from '../../components/layout/AppShell'
-import { Header } from '../../components/layout/Header'
-import { useMetricsSocket } from '../../features/metrics/sockets/useMetricsSocket'
+import { Dashboard } from '@/features/metrics/components/Dashboard'
+import { useMetricsSocket } from '@/features/metrics/sockets/useMetricsSocket'
+import { AppShell } from '@/shared/layout/AppShell'
+import { Header } from '@/shared/layout/Header'
 
 export function DashboardPage() {
   useMetricsSocket()

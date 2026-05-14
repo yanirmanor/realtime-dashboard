@@ -7,7 +7,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-import { useMetricsStore } from '../../features/metrics/store/metrics.store'
+import { useMetricsStore } from '@/features/metrics/store/metrics.store'
 
 function formatTime(value: unknown, withHour = false) {
   const date = value instanceof Date ? value : new Date(String(value))

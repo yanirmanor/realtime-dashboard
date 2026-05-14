@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import { createMetricEvent } from '../../test/fixtures'
+import { createMetricEvent } from '@/test/fixtures'
 import { EventsTableSection } from './EventsTableSection'
 
-vi.mock('../../features/metrics/hooks/useFilteredEvents', () => ({
+vi.mock('@/features/metrics/hooks/useFilteredEvents', () => ({
   useFilteredEvents: vi.fn(() => [createMetricEvent(), createMetricEvent({ id: 'evt-2' })]),
 }))
 

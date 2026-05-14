@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { useMetricsStore } from '../../features/metrics/store/metrics.store'
+import { useMetricsStore } from '@/features/metrics/store/metrics.store'
 import { StatusBanner } from './StatusBanner'
 
 function resetStore() {

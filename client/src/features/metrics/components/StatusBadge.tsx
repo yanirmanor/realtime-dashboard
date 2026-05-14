@@ -1,4 +1,4 @@
-import type { ClaimStatus } from '../../features/metrics/types/metrics.types'
+import type { ClaimStatus } from '@/features/metrics/types/metrics.types'
 
 const statusStyles: Record<ClaimStatus, string> = {
   processing: 'border-[#4a8eff]/40 bg-[#4a8eff]/15 text-[#adc7ff]',

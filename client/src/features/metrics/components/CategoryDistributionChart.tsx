@@ -7,7 +7,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-import { useMetricsStore } from '../../features/metrics/store/metrics.store'
+import { useMetricsStore } from '@/features/metrics/store/metrics.store'
 
 const categories = ['health', 'car', 'home', 'travel']
 

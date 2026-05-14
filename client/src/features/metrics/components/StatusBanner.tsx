@@ -1,5 +1,5 @@
 import { AlertTriangle, Loader2, WifiOff } from 'lucide-react'
-import { useMetricsStore } from '../../features/metrics/store/metrics.store'
+import { useMetricsStore } from '@/features/metrics/store/metrics.store'
 
 export function StatusBanner() {
   const connectionStatus = useMetricsStore((state) => state.connectionStatus)

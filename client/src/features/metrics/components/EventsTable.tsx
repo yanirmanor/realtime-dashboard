@@ -8,9 +8,9 @@ import {
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react'
 import { useMemo, useRef, useState } from 'react'
-import { useMetricsStore } from '../../features/metrics/store/metrics.store'
-import { useFilteredEvents } from '../../features/metrics/hooks/useFilteredEvents'
-import { eventColumns } from '../../features/metrics/table/event-columns'
+import { useMetricsStore } from '@/features/metrics/store/metrics.store'
+import { useFilteredEvents } from '@/features/metrics/hooks/useFilteredEvents'
+import { eventColumns } from '@/features/metrics/table/event-columns'
 
 export function EventsTable() {
   const events = useFilteredEvents()

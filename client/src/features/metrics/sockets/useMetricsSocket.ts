@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { socket } from './socket-client'
-import type { MetricEvent } from '../types/metrics.types'
-import { useMetricsStore } from '../store/metrics.store'
+import type { MetricEvent } from '@/features/metrics/types/metrics.types'
+import { useMetricsStore } from '@/features/metrics/store/metrics.store'
 
 export function useMetricsSocket() {
   const addEvent = useMetricsStore((state) => state.addEvent)

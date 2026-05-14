@@ -1,6 +1,6 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import { StatusBadge } from '../../../components/dashboard/StatusBadge'
-import type { MetricEvent } from '../types/metrics.types'
+import { StatusBadge } from '@/features/metrics/components/StatusBadge'
+import type { MetricEvent } from '@/features/metrics/types/metrics.types'
 
 export const eventColumns: ColumnDef<MetricEvent>[] = [
   {

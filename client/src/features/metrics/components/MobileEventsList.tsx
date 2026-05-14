@@ -8,9 +8,9 @@ import {
   XCircle,
 } from 'lucide-react'
 import { useMemo, useRef } from 'react'
-import { useFilteredEvents } from '../../features/metrics/hooks/useFilteredEvents'
-import { useMetricsStore } from '../../features/metrics/store/metrics.store'
-import type { ClaimStatus } from '../../features/metrics/types/metrics.types'
+import { useFilteredEvents } from '@/features/metrics/hooks/useFilteredEvents'
+import { useMetricsStore } from '@/features/metrics/store/metrics.store'
+import type { ClaimStatus } from '@/features/metrics/types/metrics.types'
 import { StatusBadge } from './StatusBadge'
 
 const statuses = [

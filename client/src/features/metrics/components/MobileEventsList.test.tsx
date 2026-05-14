@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { MobileEventsList } from './MobileEventsList'
 
-vi.mock('../../features/metrics/hooks/useFilteredEvents', () => ({
+vi.mock('@/features/metrics/hooks/useFilteredEvents', () => ({
   useFilteredEvents: vi.fn(() => []),
 }))
 

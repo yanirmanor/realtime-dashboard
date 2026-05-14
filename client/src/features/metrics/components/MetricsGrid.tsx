@@ -4,7 +4,7 @@ import {
   Bot,
   Timer,
 } from 'lucide-react'
-import { useMetricStats } from '../../features/metrics/hooks/useMetricStats'
+import { useMetricStats } from '@/features/metrics/hooks/useMetricStats'
 import { MetricCard } from './MetricCard'
 
 export function MetricsGrid() {

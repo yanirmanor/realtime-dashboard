@@ -4,15 +4,15 @@ import { DashboardPage } from './DashboardPage'
 
 const useMetricsSocket = vi.fn()
 
-vi.mock('../../features/metrics/sockets/useMetricsSocket', () => ({
+vi.mock('@/features/metrics/sockets/useMetricsSocket', () => ({
   useMetricsSocket: () => useMetricsSocket(),
 }))
 
-vi.mock('../../components/layout/Header', () => ({
+vi.mock('@/shared/layout/Header', () => ({
   Header: () => <div>Header Component</div>,
 }))
 
-vi.mock('../../components/dashboard/Dashboard', () => ({
+vi.mock('@/features/metrics/components/Dashboard', () => ({
   Dashboard: () => <div>Dashboard Component</div>,
 }))
 

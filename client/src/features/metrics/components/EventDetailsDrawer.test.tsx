@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { createMetricEvent } from '../../test/fixtures'
-import { useMetricsStore } from '../../features/metrics/store/metrics.store'
+import { createMetricEvent } from '@/test/fixtures'
+import { useMetricsStore } from '@/features/metrics/store/metrics.store'
 import { EventDetailsDrawer } from './EventDetailsDrawer'
 
 vi.mock('@base-ui-components/react/dialog', () => {

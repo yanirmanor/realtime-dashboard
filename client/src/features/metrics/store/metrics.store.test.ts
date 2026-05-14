@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { createMetricEvent } from '../../../test/fixtures'
+import { createMetricEvent } from '@/test/fixtures'
 import { useMetricsStore } from './metrics.store'
 
 function resetStore() {

@@ -1,12 +1,12 @@
 import { act, fireEvent, render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { useMetricsStore } from '../../features/metrics/store/metrics.store'
+import { useMetricsStore } from '@/features/metrics/store/metrics.store'
 import { Header } from './Header'
 
 const startStream = vi.fn()
 const stopStream = vi.fn()
 
-vi.mock('../../features/metrics/sockets/useMetricsSocket', () => ({
+vi.mock('@/features/metrics/sockets/useMetricsSocket', () => ({
   startStream: () => startStream(),
   stopStream: () => stopStream(),
 }))

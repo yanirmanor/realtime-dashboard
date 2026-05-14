@@ -1,4 +1,4 @@
-import { useFilteredEvents } from '../../features/metrics/hooks/useFilteredEvents'
+import { useFilteredEvents } from '@/features/metrics/hooks/useFilteredEvents'
 import { EventsTable } from './EventsTable'
 import { MobileEventsList } from './MobileEventsList'
 

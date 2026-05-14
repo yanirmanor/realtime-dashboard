@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useMetricsStore } from '../store/metrics.store'
+import { useMetricsStore } from '@/features/metrics/store/metrics.store'
 
 const SEARCH_DEBOUNCE_MS = 200
 
