@@ -9,10 +9,11 @@ import { useVirtualizer } from '@tanstack/react-virtual'
 import { ArrowUpDown } from 'lucide-react'
 import { useMemo, useRef, useState } from 'react'
 import { useMetricsStore } from '../../features/metrics/store/metrics.store'
+import { useFilteredEvents } from '../../features/metrics/hooks/useFilteredEvents'
 import { eventColumns } from '../../features/metrics/table/event-columns'
 
 export function EventsTable() {
-  const events = useMetricsStore((state) => state.events)
+  const events = useFilteredEvents()
   const selectEvent = useMetricsStore((state) => state.selectEvent)
   const [sorting, setSorting] = useState<SortingState>([])
 

@@ -4,11 +4,11 @@ import {
   Bot,
   Timer,
 } from 'lucide-react'
-import { useMetricsStore } from '../../features/metrics/store/metrics.store'
+import { useFilteredEvents } from '../../features/metrics/hooks/useFilteredEvents'
 import { MetricCard } from './MetricCard'
 
 export function MetricsGrid() {
-  const events = useMetricsStore((state) => state.events)
+  const events = useFilteredEvents()
 
   const fraudAlerts = events.filter(
     (event) => event.eventType === 'fraud_alert',

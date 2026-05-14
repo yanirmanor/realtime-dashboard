@@ -1,8 +1,8 @@
-import { useMetricsStore } from '../../features/metrics/store/metrics.store'
+import { useFilteredEvents } from '../../features/metrics/hooks/useFilteredEvents'
 import { EventsTable } from './EventsTable'
 
 export function EventsTableSection() {
-  const events = useMetricsStore((state) => state.events)
+  const events = useFilteredEvents()
 
   return (
     <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
@@ -15,7 +15,7 @@ export function EventsTableSection() {
         </div>
 
         <span className="rounded-full border border-white/10 bg-slate-900 px-3 py-1 text-sm text-slate-400">
-          {events.length} events
+          {events.length} visible events
         </span>
       </div>
 
