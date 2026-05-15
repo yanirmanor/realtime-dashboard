@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { socket } from './socket-client'
+import { metricsSocket } from './metrics-socket'
 import type { MetricEvent } from '@/features/metrics/types/metrics.types'
 import { useMetricsStore } from '@/features/metrics/store/metrics.store'
 
@@ -13,43 +13,43 @@ export function useMetricsSocket() {
   )
 
   useEffect(() => {
-    socket.connect()
+    metricsSocket.connect()
 
-    socket.on('connect', () => {
+    metricsSocket.on('connect', () => {
       setConnectionStatus('connected')
     })
 
-    socket.on('disconnect', () => {
+    metricsSocket.on('disconnect', () => {
       setConnectionStatus('disconnected')
     })
 
-    socket.io.on('reconnect_attempt', () => {
+    metricsSocket.onReconnectAttempt(() => {
       setConnectionStatus('reconnecting')
     })
 
-    socket.on('metric:event', (event: MetricEvent) => {
+    metricsSocket.on('metric:event', (event: MetricEvent) => {
       addEvent(event)
     })
 
-    socket.on('stream:status', ({ isStreaming }) => {
+    metricsSocket.on('stream:status', ({ isStreaming }) => {
       setIsStreaming(isStreaming)
     })
 
     return () => {
-      socket.off('connect')
-      socket.off('disconnect')
-      socket.off('metric:event')
-      socket.off('stream:status')
-      socket.io.off('reconnect_attempt')
-      socket.disconnect()
+      metricsSocket.off('connect')
+      metricsSocket.off('disconnect')
+      metricsSocket.off('metric:event')
+      metricsSocket.off('stream:status')
+      metricsSocket.offReconnectAttempt()
+      metricsSocket.disconnect()
     }
   }, [addEvent, setConnectionStatus, setIsStreaming])
 }
 
 export function startStream() {
-  socket.emit('stream:start')
+  metricsSocket.emit('stream:start')
 }
 
 export function stopStream() {
-  socket.emit('stream:stop')
+  metricsSocket.emit('stream:stop')
 }

@@ -1,9 +1,32 @@
-import { AlertTriangle, Loader2, WifiOff } from 'lucide-react'
+import { AlertTriangle, FlaskConical, Loader2, WifiOff } from 'lucide-react'
 import { useMetricsStore } from '@/features/metrics/store/metrics.store'
+import { SOCKET_MODE } from '@/features/metrics/sockets/metrics-socket'
 
 export function StatusBanner() {
   const connectionStatus = useMetricsStore((state) => state.connectionStatus)
   const isStreaming = useMetricsStore((state) => state.isStreaming)
+
+  if (SOCKET_MODE === 'mock') {
+    if (!isStreaming) {
+      return (
+        <Banner
+          icon={AlertTriangle}
+          title="Mock stream paused"
+          description="Mock mode is active. Click Start to resume generated events."
+          className="border-[#8b90a0]/40 bg-[#8b90a0]/12 text-[#d7d9df]"
+        />
+      )
+    }
+
+    return (
+      <Banner
+        icon={FlaskConical}
+        title="Mock mode active"
+        description="Using client-only generated events. No backend server is required."
+        className="border-[#7fd5ff]/40 bg-[#7fd5ff]/12 text-[#c6ecff]"
+      />
+    )
+  }
 
   if (connectionStatus === 'connected' && isStreaming) {
     return null

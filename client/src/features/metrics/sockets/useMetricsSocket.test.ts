@@ -2,15 +2,15 @@ import { renderHook } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createMetricEvent } from '@/test/fixtures'
 import { useMetricsStore } from '@/features/metrics/store/metrics.store'
-import { socket } from './socket-client'
+import { metricsSocket } from './metrics-socket'
 import { startStream, stopStream, useMetricsSocket } from './useMetricsSocket'
 
-vi.mock('./socket-client', () => {
+vi.mock('./metrics-socket', () => {
   const handlers = new Map<string, (payload?: unknown) => void>()
-  const ioHandlers = new Map<string, (payload?: unknown) => void>()
+  const reconnectHandlers = new Set<() => void>()
 
   return {
-    socket: {
+    metricsSocket: {
       connect: vi.fn(),
       disconnect: vi.fn(),
       emit: vi.fn(),
@@ -20,16 +20,14 @@ vi.mock('./socket-client', () => {
       off: vi.fn((event: string) => {
         handlers.delete(event)
       }),
-      io: {
-        on: vi.fn((event: string, cb: (payload?: unknown) => void) => {
-          ioHandlers.set(event, cb)
-        }),
-        off: vi.fn((event: string) => {
-          ioHandlers.delete(event)
-        }),
-      },
+      onReconnectAttempt: vi.fn((cb: () => void) => {
+        reconnectHandlers.add(cb)
+      }),
+      offReconnectAttempt: vi.fn(() => {
+        reconnectHandlers.clear()
+      }),
       __handlers: handlers,
-      __ioHandlers: ioHandlers,
+      __reconnectHandlers: reconnectHandlers,
     },
   }
 })
@@ -48,38 +46,38 @@ function resetStore() {
 describe('useMetricsSocket', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    ;(socket as any).__handlers.clear()
-    ;(socket as any).__ioHandlers.clear()
+    ;(metricsSocket as any).__handlers.clear()
+    ;(metricsSocket as any).__reconnectHandlers.clear()
     resetStore()
   })
 
   it('wires listeners and updates store', () => {
     const { unmount } = renderHook(() => useMetricsSocket())
 
-    expect((socket as any).connect).toHaveBeenCalledTimes(1)
+    expect((metricsSocket as any).connect).toHaveBeenCalledTimes(1)
 
-    ;(socket as any).__handlers.get('connect')?.()
+    ;(metricsSocket as any).__handlers.get('connect')?.()
     expect(useMetricsStore.getState().connectionStatus).toBe('connected')
 
-    ;(socket as any).__ioHandlers.get('reconnect_attempt')?.()
+    ;(metricsSocket as any).__reconnectHandlers.values().next().value?.()
     expect(useMetricsStore.getState().connectionStatus).toBe('reconnecting')
 
-    ;(socket as any).__handlers.get('stream:status')?.({ isStreaming: false })
+    ;(metricsSocket as any).__handlers.get('stream:status')?.({ isStreaming: false })
     expect(useMetricsStore.getState().isStreaming).toBe(false)
 
-    ;(socket as any).__handlers.get('metric:event')?.(createMetricEvent({ id: 'evt-9' }))
+    ;(metricsSocket as any).__handlers.get('metric:event')?.(createMetricEvent({ id: 'evt-9' }))
     expect(useMetricsStore.getState().events[0]?.id).toBe('evt-9')
 
     unmount()
 
-    expect((socket as any).disconnect).toHaveBeenCalledTimes(1)
+    expect((metricsSocket as any).disconnect).toHaveBeenCalledTimes(1)
   })
 
   it('emits start and stop events', () => {
     startStream()
     stopStream()
 
-    expect((socket as any).emit).toHaveBeenNthCalledWith(1, 'stream:start')
-    expect((socket as any).emit).toHaveBeenNthCalledWith(2, 'stream:stop')
+    expect((metricsSocket as any).emit).toHaveBeenNthCalledWith(1, 'stream:start')
+    expect((metricsSocket as any).emit).toHaveBeenNthCalledWith(2, 'stream:stop')
   })
 })
