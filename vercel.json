@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "bun install",
+  "buildCommand": "bun run --cwd client build",
+  "outputDirectory": "client/dist",
+  "env": {
+    "VITE_SOCKET_MODE": "mock"
+  }
+}
